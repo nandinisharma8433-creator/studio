@@ -104,9 +104,10 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="w-6 h-6" />
+                <span className="sr-only">Open History</span>
               </Button>
             </SheetTrigger>
-            <SheetContent className="w-full max-w-sm flex flex-col p-0">
+            <SheetContent side="left" className="w-full max-w-sm flex flex-col p-0">
                <SheetHeader className="p-4 border-b">
                 <SheetTitle>Search History</SheetTitle>
               </SheetHeader>

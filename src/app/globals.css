@@ -3,24 +3,24 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'PT Sans', sans-serif;
 }
 
 @layer base {
   :root {
-    --background: 125 43% 94%;
+    --background: 125 43% 94%; /* Light Green */
     --foreground: 20 20% 25%;
     --card: 0 0% 100%;
     --card-foreground: 20 20% 25%;
     --popover: 0 0% 100%;
     --popover-foreground: 20 20% 25%;
-    --primary: 123 44% 39%;
+    --primary: 123 44% 39%; /* Forest Green */
     --primary-foreground: 0 0% 98%;
     --secondary: 125 43% 90%;
     --secondary-foreground: 123 44% 20%;
     --muted: 125 43% 90%;
     --muted-foreground: 20 20% 45%;
-    --accent: 20 20% 38%;
+    --accent: 20 38% 38%; /* Earth Brown */
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -47,7 +47,7 @@ body {
     --secondary-foreground: 125 20% 95%;
     --muted: 120 20% 15%;
     --muted-foreground: 125 20% 60%;
-    --accent: 20 20% 60%;
+    --accent: 20 38% 60%;
     --accent-foreground: 20 20% 10%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;

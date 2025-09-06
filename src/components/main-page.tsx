@@ -76,8 +76,13 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
   };
 
   const refreshHistory = async () => {
-    const updatedHistory = await getHistory();
-    setHistory(updatedHistory);
+    try {
+      const updatedHistory = await getHistory();
+      setHistory(updatedHistory);
+    } catch (error) {
+        console.error("Failed to refresh history:", error)
+        // Optionally, show a toast to the user
+    }
   };
   
   const handleHistorySelect = (selectedPlant: HistoryPlant) => {
@@ -86,14 +91,6 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
       setIsHistorySheetOpen(false);
     }
   };
-
-  const HistoryContent = (
-    <HistorySidebar
-      history={history}
-      onSelect={handleHistorySelect}
-      onRefresh={refreshHistory}
-    />
-  );
   
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -109,11 +106,15 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
                 <Menu className="w-6 h-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent className="w-full max-w-sm p-0">
+            <SheetContent className="w-full max-w-sm flex flex-col p-0">
                <SheetHeader className="p-4 border-b">
                 <SheetTitle>Search History</SheetTitle>
               </SheetHeader>
-              <div className="p-4">{HistoryContent}</div>
+               <HistorySidebar
+                history={history}
+                onSelect={handleHistorySelect}
+                onRefresh={refreshHistory}
+              />
             </SheetContent>
           </Sheet>
         )}
@@ -121,7 +122,7 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
 
       <div className="flex-1 w-full max-w-6xl mx-auto grid md:grid-cols-[1fr_380px] gap-8 p-4 md:p-8">
         <main>
-          <Card className="overflow-hidden">
+          <Card className="overflow-hidden shadow-sm">
             <CardContent className="p-4 md:p-6">
               <Tabs defaultValue="text">
                 <TabsList className="grid w-full grid-cols-2">
@@ -177,7 +178,11 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
         
         {!isMobile && (
           <aside className="hidden md:block">
-            {HistoryContent}
+            <HistorySidebar
+              history={history}
+              onSelect={handleHistorySelect}
+              onRefresh={refreshHistory}
+            />
           </aside>
         )}
       </div>

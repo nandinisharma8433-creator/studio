@@ -40,7 +40,7 @@ export default function HistorySidebar({ history, onSelect, onRefresh }: History
                     >
                       <p className="font-semibold truncate">{item.common_name}</p>
                       <p className="text-xs text-muted-foreground">
-                        {item.timestamp && formatDistanceToNow(item.timestamp.toDate(), { addSuffix: true })}
+                        {item.timestamp && formatDistanceToNow(new Date(item.timestamp), { addSuffix: true })}
                       </p>
                     </button>
                   </li>

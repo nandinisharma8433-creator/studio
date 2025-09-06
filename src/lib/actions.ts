@@ -12,7 +12,8 @@ import {
 } from '@/ai/flows/image-based-plant-identification';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp, query, orderBy, limit, getDocs } from 'firebase/firestore';
-import type { HistoryPlant } from './types';
+import type { HistoryPlant, Plant } from './types';
+import type { Timestamp } from 'firebase/firestore';
 
 type PlantData = TextBasedPlantSearchOutput | IdentifyPlantByImageOutput;
 
@@ -69,7 +70,13 @@ export async function getHistory(): Promise<HistoryPlant[]> {
     const querySnapshot = await getDocs(q);
     const history: HistoryPlant[] = [];
     querySnapshot.forEach(doc => {
-      history.push({ id: doc.id, ...doc.data() } as HistoryPlant);
+      const data = doc.data();
+      const timestamp = data.timestamp as Timestamp;
+      history.push({ 
+        id: doc.id, 
+        ...data,
+        timestamp: timestamp.toDate().toISOString(),
+      } as unknown as HistoryPlant);
     });
     return history;
   } catch (error) {

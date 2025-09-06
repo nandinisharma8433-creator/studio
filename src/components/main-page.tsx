@@ -13,6 +13,7 @@ import PlantResultCard from './plant-result-card';
 import HistorySidebar from './history-sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import FamousPlants from './famous-plants';
 
 export default function MainPage({ initialHistory }: { initialHistory: HistoryPlant[] }) {
   const [plant, setPlant] = useState<Plant | null>(null);
@@ -165,13 +166,7 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
             )}
             {plant && !isPending && <PlantResultCard plant={plant} />}
             {!plant && !isPending && (
-               <div className="flex flex-col items-center justify-center gap-4 p-8 text-center border-2 border-dashed rounded-lg bg-card/50">
-                <Leaf className="w-16 h-16 text-muted-foreground/50" />
-                <h2 className="text-xl font-semibold">Welcome to FloraSnap!</h2>
-                <p className="max-w-md text-muted-foreground">
-                  Use the tabs above to search for a plant by name or upload an image to identify it. Your results will appear here.
-                </p>
-              </div>
+              <FamousPlants />
             )}
           </div>
         </main>

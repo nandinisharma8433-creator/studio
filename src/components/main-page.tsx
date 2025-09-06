@@ -92,11 +92,11 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
   );
   
   return (
-    <div className="flex flex-col min-h-screen">
-       <header className="flex items-center justify-between p-4 border-b bg-card">
-        <div className="flex items-center gap-2">
+    <div className="flex flex-col min-h-screen bg-background">
+       <header className="flex items-center justify-between p-4 border-b bg-card shadow-sm">
+        <div className="flex items-center gap-3">
           <Leaf className="w-8 h-8 text-primary" />
-          <h1 className="text-2xl font-bold text-primary font-headline">FloraSnap</h1>
+          <h1 className="text-3xl font-bold text-primary font-headline tracking-tight">FloraSnap</h1>
         </div>
         {isMobile && (
           <Sheet open={isHistorySheetOpen} onOpenChange={setIsHistorySheetOpen}>
@@ -109,15 +109,15 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
                <SheetHeader className="p-4 border-b">
                 <SheetTitle>Search History</SheetTitle>
               </SheetHeader>
-              {HistoryContent}
+              <div className="p-4">{HistoryContent}</div>
             </SheetContent>
           </Sheet>
         )}
       </header>
 
-      <div className="flex-1 grid md:grid-cols-[1fr_380px] gap-6 p-4 md:p-6">
+      <div className="flex-1 w-full max-w-6xl mx-auto grid md:grid-cols-[1fr_380px] gap-8 p-4 md:p-8">
         <main>
-          <Card>
+          <Card className="overflow-hidden">
             <CardContent className="p-4 md:p-6">
               <Tabs defaultValue="text">
                 <TabsList className="grid w-full grid-cols-2">
@@ -156,11 +156,11 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
             </CardContent>
           </Card>
 
-          <div className="mt-6">
+          <div className="mt-8">
             {isPending && (
-              <div className="flex flex-col items-center justify-center gap-4 p-8 text-center rounded-lg bg-card">
+              <div className="flex flex-col items-center justify-center gap-4 p-8 text-center rounded-lg bg-card/80">
                 <Loader className="w-12 h-12 animate-spin text-primary" />
-                <p className="font-semibold">Analyzing...</p>
+                <p className="font-semibold text-lg">Analyzing...</p>
                 <p className="text-sm text-muted-foreground">Our AI botanist is taking a look.</p>
               </div>
             )}

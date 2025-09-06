@@ -15,7 +15,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import type { Plant } from '@/lib/types';
-import { Separator } from './ui/separator';
+import Image from 'next/image';
 
 interface InfoRowProps {
   label: string;
@@ -55,6 +55,16 @@ export default function PlantResultCard({ plant }: { plant: Plant }) {
         )}
       </CardHeader>
       <CardContent>
+        <div className="mb-4">
+            <Image 
+                src="https://picsum.photos/800/600"
+                alt={`Image of ${plant.common_name}`}
+                width={800}
+                height={600}
+                className="rounded-lg object-cover w-full aspect-[4/3]"
+                data-ai-hint={`${plant.common_name}`}
+            />
+        </div>
          <Accordion type="multiple" defaultValue={['care', 'uses']} className="w-full">
             <AccordionItem value="details">
               <AccordionTrigger>Details</AccordionTrigger>

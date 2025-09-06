@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { HistoryPlant } from '@/lib/types';
 import { Button } from './ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
@@ -13,13 +14,41 @@ interface HistorySidebarProps {
   onRefresh: () => void;
 }
 
-export default function HistorySidebar({ history, onSelect, onRefresh }: HistorySidebarProps) {
+function HistoryItem({ item, onSelect }: { item: HistoryPlant; onSelect: (plant: HistoryPlant) => void }) {
+  const [timeAgo, setTimeAgo] = useState('');
+
+  useEffect(() => {
+    if (item.timestamp) {
+      setTimeAgo(formatDistanceToNow(new Date(item.timestamp), { addSuffix: true }));
+    }
+  }, [item.timestamp]);
+
   return (
-    <Card className="h-full flex flex-col">
+    <li>
+      <button
+        onClick={() => onSelect(item)}
+        className="w-full p-3 text-left transition-colors rounded-md hover:bg-secondary"
+      >
+        <p className="font-semibold truncate">{item.common_name}</p>
+        {timeAgo && <p className="text-xs text-muted-foreground">{timeAgo}</p>}
+      </button>
+    </li>
+  );
+}
+
+export default function HistorySidebar({ history, onSelect, onRefresh }: HistorySidebarProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return (
+    <Card className="h-full flex flex-col bg-light-green">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-lg">Search History</CardTitle>
+        <CardTitle className="text-lg font-headline text-forest-green">Search History</CardTitle>
         <Button variant="ghost" size="icon" onClick={onRefresh}>
-          <RefreshCw className="w-4 h-4" />
+          <RefreshCw className="w-4 h-4 text-forest-green" />
           <span className="sr-only">Refresh history</span>
         </Button>
       </CardHeader>
@@ -32,18 +61,8 @@ export default function HistorySidebar({ history, onSelect, onRefresh }: History
               </p>
             ) : (
               <ul className="space-y-2">
-                {history.map(item => (
-                  <li key={item.id}>
-                    <button
-                      onClick={() => onSelect(item)}
-                      className="w-full p-3 text-left transition-colors rounded-md hover:bg-secondary"
-                    >
-                      <p className="font-semibold truncate">{item.common_name}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {item.timestamp && formatDistanceToNow(new Date(item.timestamp), { addSuffix: true })}
-                      </p>
-                    </button>
-                  </li>
+                {isClient && history.map(item => (
+                  <HistoryItem key={item.id} item={item} onSelect={onSelect} />
                 ))}
               </ul>
             )}

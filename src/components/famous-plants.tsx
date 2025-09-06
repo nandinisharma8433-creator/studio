@@ -5,37 +5,37 @@ const famousPlants = [
   {
     name: 'Rose',
     description: 'A woody perennial flowering plant of the genus Rosa.',
-    imageUrl: 'https://picsum.photos/seed/rose/400/300',
+    imageUrl: 'https://picsum.photos/seed/rose-flower/400/300',
     hint: 'rose flower',
   },
   {
     name: 'Sunflower',
     description: 'A large annual forb of the genus Helianthus grown as a crop for its edible oil and fruits.',
-    imageUrl: 'https://picsum.photos/seed/sunflower/400/300',
+    imageUrl: 'https://picsum.photos/seed/sunflower-field/400/300',
     hint: 'sunflower field',
   },
   {
     name: 'Oak Tree',
     description: 'A tree or shrub in the genus Quercus of the beech family, Fagaceae.',
-    imageUrl: 'https://picsum.photos/seed/oak/400/300',
+    imageUrl: 'https://picsum.photos/seed/oak-tree/400/300',
     hint: 'oak tree',
   },
   {
     name: 'Lavender',
     description: 'A genus of 47 known species of flowering plants in the mint family, Lamiaceae.',
-    imageUrl: 'https://picsum.photos/seed/lavender/400/300',
+    imageUrl: 'https://picsum.photos/seed/lavender-field/400/300',
     hint: 'lavender field',
   },
   {
     name: 'Cherry Blossom',
     description: 'The flower of any of several trees of genus Prunus, particularly the Japanese cherry.',
-    imageUrl: 'https://picsum.photos/seed/cherry/400/300',
+    imageUrl: 'https://picsum.photos/seed/cherry-blossom/400/300',
     hint: 'cherry blossom',
   },
   {
     name: 'Maple Tree',
     description: 'A genus of trees or shrubs in the soapberry family, Sapindaceae.',
-    imageUrl: 'https://picsum.photos/seed/maple/400/300',
+    imageUrl: 'https://picsum.photos/seed/maple-leaf/400/300',
     hint: 'maple leaf',
   },
 ];

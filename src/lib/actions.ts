@@ -18,14 +18,15 @@ type PlantData = TextBasedPlantSearchOutput | IdentifyPlantByImageOutput;
 
 async function saveToHistory(plantData: PlantData) {
   try {
+    // This will fail if the rules are not set up correctly, but we don't want to block the user.
     const docRef = await addDoc(collection(db, 'plants_history'), {
       ...plantData,
       timestamp: serverTimestamp(),
     });
     console.log('Document written with ID: ', docRef.id);
   } catch (e) {
-    console.error('Error adding document: ', e);
-    // Don't re-throw, as failing to save history shouldn't fail the whole search
+    console.error('Error adding document to history: ', e);
+    // Don't re-throw, as failing to save history shouldn't fail the whole search.
   }
 }
 
@@ -73,6 +74,8 @@ export async function getHistory(): Promise<HistoryPlant[]> {
     return history;
   } catch (error) {
     console.error('Error fetching history:', error);
+    // Return an empty array if Firestore is not accessible.
+    // This prevents the app from crashing.
     return [];
   }
 }

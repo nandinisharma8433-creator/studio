@@ -42,7 +42,7 @@ export default function PlantResultCard({ plant }: { plant: Plant }) {
         <div className="flex items-start justify-between gap-4">
             <div>
                  <CardTitle className="text-3xl font-headline text-primary">{plant.common_name}</CardTitle>
-                <CardDescription className="italic text-base">{plant.scientific_name}</CardDescription>
+                <CardDescription className="italic text-base font-body">{plant.scientific_name}</CardDescription>
             </div>
             {plant.conservation_status && plant.conservation_status.toLowerCase() !== 'not evaluated' && (
                  <Badge variant="secondary" className="text-sm">{plant.conservation_status}</Badge>
@@ -68,7 +68,7 @@ export default function PlantResultCard({ plant }: { plant: Plant }) {
         <div className="px-6 pb-6">
          <Accordion type="multiple" defaultValue={['care', 'uses']} className="w-full">
             <AccordionItem value="details">
-              <AccordionTrigger className="text-lg">Details</AccordionTrigger>
+              <AccordionTrigger className="text-lg font-headline">Details</AccordionTrigger>
               <AccordionContent>
                 <dl>
                   <InfoRow label="Family" value={plant.family} />
@@ -80,25 +80,25 @@ export default function PlantResultCard({ plant }: { plant: Plant }) {
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="care">
-              <AccordionTrigger className="text-lg">Care Instructions</AccordionTrigger>
+              <AccordionTrigger className="text-lg font-headline">Care Instructions</AccordionTrigger>
               <AccordionContent className="prose prose-sm max-w-none pt-2">
                 <p>{plant.care_instructions}</p>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="uses">
-              <AccordionTrigger className="text-lg">Uses</AccordionTrigger>
+              <AccordionTrigger className="text-lg font-headline">Uses</AccordionTrigger>
               <AccordionContent className="prose prose-sm max-w-none pt-2">
                 <p>{plant.uses}</p>
               </AccordionContent>
             </AccordionItem>
              <AccordionItem value="toxicity">
-              <AccordionTrigger className="text-lg">Toxicity</AccordionTrigger>
+              <AccordionTrigger className="text-lg font-headline">Toxicity</AccordionTrigger>
               <AccordionContent className="prose prose-sm max-w-none pt-2">
                  <p>{plant.toxicities}</p>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="taxonomy">
-              <AccordionTrigger className="text-lg">Taxonomy</AccordionTrigger>
+              <AccordionTrigger className="text-lg font-headline">Taxonomy</AccordionTrigger>
               <AccordionContent className="prose prose-sm max-w-none pt-2">
                 <p>{plant.taxonomy}</p>
               </AccordionContent>

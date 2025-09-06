@@ -48,7 +48,7 @@ export default function FamousPlants() {
       </h2>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {famousPlants.map((plant, index) => (
-          <Card key={index} className="overflow-hidden">
+          <Card key={index} className="overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1">
             <CardHeader className="p-0">
               <Image
                 src={plant.imageUrl}
@@ -60,7 +60,7 @@ export default function FamousPlants() {
               />
             </CardHeader>
             <CardContent className="p-4">
-              <CardTitle className="text-xl">{plant.name}</CardTitle>
+              <CardTitle className="text-xl font-headline">{plant.name}</CardTitle>
               <p className="mt-2 text-sm text-muted-foreground">{plant.description}</p>
             </CardContent>
           </Card>

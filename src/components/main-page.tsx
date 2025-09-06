@@ -24,8 +24,7 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
   const isMobile = useIsMobile();
   const [isHistorySheetOpen, setIsHistorySheetOpen] = useState(false);
 
-  const handleTextSearch = (formData: FormData) => {
-    const query = formData.get('query') as string;
+  const performTextSearch = (query: string) => {
     if (!query) return;
 
     setPlant(null);
@@ -42,6 +41,11 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
         refreshHistory();
       }
     });
+  };
+
+  const handleTextSearch = (formData: FormData) => {
+    const query = formData.get('query') as string;
+    performTextSearch(query);
   };
 
   const handleImageSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -166,7 +170,7 @@ export default function MainPage({ initialHistory }: { initialHistory: HistoryPl
             )}
             {plant && !isPending && <PlantResultCard plant={plant} />}
             {!plant && !isPending && (
-              <FamousPlants />
+              <FamousPlants onPlantClick={performTextSearch} />
             )}
           </div>
         </main>
